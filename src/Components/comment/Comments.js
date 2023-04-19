@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { SubmitIcon } from '../../icons/icons'
 import { setPost } from '../../state/userReducer'
 import axios from '../../utils/axios'
-const Comments = ({ postId ,comments}) => {
+const Comments = ({ postId ,comments, render, forceRender}) => {
     const user = useSelector((state)=>state.user);
     const token = useSelector((state) => state.token)
     const [comment, setComment] = useState('')
@@ -19,6 +19,7 @@ const Comments = ({ postId ,comments}) => {
         }).then((response)=>{
             dispatch(setPost({posts:response.data}))
             setComment('')
+            forceRender(!render)
         })
     }
     return (

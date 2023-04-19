@@ -1,7 +1,7 @@
-import { getFrieds } from '../../utils/constants'
+import { addFollow, getFrieds, unfollow } from '../../utils/constants'
 import { useParams } from 'react-router-dom'
 import { PhotoIcon, PostIcon, UserGroupIcon } from '../../icons/icons'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchMypost, getProfileUser } from '../../state/apiCalls'
 import React, { useEffect, useState } from 'react'
 import Feed from '../PostContainer/Feed'
@@ -11,6 +11,7 @@ import Images from './Images'
 import ProfilePic from '../ProfilePic/ProfilePic'
 import EditProfile from '../EditProfile/EditProfile'
 import axios from '../../utils/axios'
+import { setUserData } from '../../state/userReducer'
 
 const ProfileMainPost = () => {
   const params = useParams()
@@ -29,6 +30,7 @@ const ProfileMainPost = () => {
   const [profileUser, setProfileUser] = useState([])
   const [render, forceRender] = useState(false)
   const token = useSelector((state) => state.token)
+  const user = useSelector((state) => state.user)
 
 
   const getFollowers = () => {
@@ -55,6 +57,49 @@ const ProfileMainPost = () => {
     const response = await fetchMypost(token, profileId)
     setPosts(response)
   }
+
+  const [Following, setFollowing] = useState(false)
+  const dispatch = useDispatch()
+  useState(() => {
+    setFollowing(user.followings.includes(profileId))
+  }, [])
+//profile follow
+  const handleFollow = async (friendId) => {
+    console.log("follow");
+    try {
+      const response = await axios.put(addFollow, { friendId }, {
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': `Barear ${token}`
+        }
+      })
+      const updatedUserData = response.data
+      setFollowing(true)
+      dispatch(setUserData({ user: updatedUserData }))
+    } catch (err) {
+      console.log("error occurred while handling follow");
+    }
+  } 
+
+  const handleUnFollow = async (friendId) => {
+    console.log("unfollow");
+    try {
+      axios.put(unfollow, { unfollowid: friendId }, {
+        headers: {
+          'Authorization': `Barear ${token}`
+        }
+      }).then((response) => {
+        console.log(response);
+        const updatedUserData = response.data
+        console.log(updatedUserData);
+        dispatch(setUserData({ user: updatedUserData }))
+        setFollowing(false)
+      })
+    } catch (err) {
+      console.log("error occurred while handling unfollow");
+    }
+  }
+
   return (
     <>
       <div className='w-full mt-4'>
@@ -67,10 +112,19 @@ const ProfileMainPost = () => {
             <div className=' border-b-2 border-[#3d3f50]'>
               <>
                 <ProfilePic profilePic={profileUser.profilePic} profileId={profileId} />
-                <div className='ml-24'>
-                  <h1 className=' text-2xl font-semibold capitalize'>
+                <div className='ml-24 flex' >
+                  <h1 className=' text-2xl font-semibold px-2 '>
                     {profileUser?.userName}
-                  </h1 >
+                  </h1>
+
+                  <div className='pr-3 -mt-2'>
+                    {!Following && user.followers.includes(profileId) &&
+                      (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleFollow(profileId)}>Follow back</button>)}
+                    {!Following && !user.followers.includes(profileId) &&
+                      (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleFollow(profileId)}>Follow</button>)}
+                    {Following && (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleUnFollow(profileId)}>Following</button>)}
+                  </div>
+
                   <div className='flex flex-wrapjustify-self-auto w-32'>
                     <p className='text-gray-500 w-full leading-4'>{profileUser?.bio}</p>
                   </div>
@@ -101,7 +155,7 @@ const ProfileMainPost = () => {
               </div>
 
               {tab === "followings" && <Friends data={followings} type={"followings"} />}
-              {tab === "posts" && <Feed Profileposts={posts} profileId={profileId} isMypost={true} />}
+              {tab === "posts" && <Feed Profileposts={posts} profileId={profileId} render={render} forceRender={forceRender} isMypost={true} />}
               {tab === "followers" && <Friends forceRender={forceRender} render={render} data={followers} type={"followers"} />}
               {tab === "images" && <Images post={posts} />}
             </div>

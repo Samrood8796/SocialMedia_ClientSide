@@ -18,6 +18,8 @@ const Post = (props) => {
         image,
         likes,
         comments,
+        render,
+        forceRender,
         createdAt } = props;
 
     const [showComment, setShowComment] = useState(false)
@@ -30,6 +32,7 @@ const Post = (props) => {
     const likeCount = Object.keys(likes).length
     const PatchLike = () => {
         likePost(token, postId, dispatch)
+            forceRender(!render)
     }
 
     const HandleShowComment = () => {
@@ -100,13 +103,13 @@ const Post = (props) => {
                     <div className='flex'>
                         {/* like section   */}
                         <div className='flex p-4'>
-                            <div onClick={PatchLike}>
+                            <div className='cursor-pointer' onClick={PatchLike}>
                                 <HeartIcon liked={userLiked} />
                             </div>
                             <p>{likeCount} likes</p>
                         </div>
                         <div className='flex p-4'>
-                            <div onClick={HandleShowComment}>
+                            <div className='cursor-pointer' onClick={HandleShowComment}>
                                 <CommentIcon />
                             </div>
                             <p className='px-1 '>{comments?.length}</p>
@@ -116,7 +119,7 @@ const Post = (props) => {
                         <ShareIcon />
                     </div> */}
                 </div>
-                {showComment && <Comments comments={comments} postId={postId} />}
+                {showComment && <Comments render={render} forceRender={forceRender} comments={comments} postId={postId} />}
             </div>
         </div>
     )

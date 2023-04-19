@@ -4,7 +4,7 @@ import axios from '../../utils/axios'
 import { useDispatch, useSelector } from 'react-redux'
 import { setPosts } from '../../state/userReducer'
 import { getPosts } from '../../utils/constants'
-const Feed = ({ isMypost, socket, Profileposts, profileId }) => {
+const Feed = ({ isMypost,render, forceRender, Profileposts, profileId }) => {
     let posts = useSelector((state) => state.posts)
     const token = useSelector((state) => state.token)
     const user = useSelector((state) => state.user)
@@ -71,7 +71,8 @@ const Feed = ({ isMypost, socket, Profileposts, profileId }) => {
                         comments,
                         createdAt }) => (
                         <Post
-                            socket={socket}
+                            render={render}
+                            forceRender={forceRender}
                             key={_id}
                             postId={_id}
                             desc={desc}
@@ -102,7 +103,6 @@ const Feed = ({ isMypost, socket, Profileposts, profileId }) => {
                     createdAt }) => (
                         
                     <Post
-                        socket={socket}
                         key={_id}
                         postId={_id}
                         desc={desc}
