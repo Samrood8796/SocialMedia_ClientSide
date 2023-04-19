@@ -16,7 +16,7 @@ const [posts, setPosts] = useState([])
             {posts?.length < 1 ? <div className='p-20 text-3xl font-semibold'>No Photos !!</div> : posts?.map((post) => (
               post.image ?
               <div className='w-1/4 p-1'>
-                <img className='w-full h-full' src={post?.image} alt='post' />
+                <img className='w-full h-full' src={post?.image} alt='post' />  
               </div>:""
             ))}
 
