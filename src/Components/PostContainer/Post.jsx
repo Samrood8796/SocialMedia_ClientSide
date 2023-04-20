@@ -93,7 +93,7 @@ const Post = (props) => {
                         }
 
                         {/* Report Post */}
-                        {user._id !== author._id &&
+                        {user?._id !== author?._id &&
                             <div className='relative'>
                                 <div className='block w-10 h-10 cursor-pointer ' onClick={() => setReportPostModal(true)}>
                                     <WarningIcon />
