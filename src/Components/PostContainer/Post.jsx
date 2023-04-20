@@ -72,7 +72,7 @@ const Post = (props) => {
                                 <p className='pl-2 text-sm'>{format(createdAt)}</p>
                             </div>
                         </div>
-                        {user._id === author._id &&
+                        {user?._id === author?._id &&
                             <div className='relative'>
                                 <div className='block w-10 h-10 cursor-pointer ' onClick={() => setShowMenu(true)}>
                                     <MenuIcon />

@@ -16,7 +16,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={userDetails ? <Home /> : <Navigate to={"/login"} />} />
+          <Route path='/' element={userDetails && userDetails?.verified === true ? <Home /> : <Navigate to={"/login"} />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<Login />} />
           <Route path='/profile/:id' element={<Profile />} />
