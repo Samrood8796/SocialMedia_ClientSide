@@ -7,7 +7,7 @@ import io from 'socket.io-client';
 import { getUser } from '../../state/apiCalls';
 import { SubmitIcon } from '../../icons/icons';
 
-const socket = io.connect("ws://localhost:3001")
+const socket = io.connect("wss://zwatch.tk")
 const     ChatContainer = ({ messages, currentChat, setMessages }) => {
   const user = useSelector((state) => state.user)
   const token = useSelector((state) => state.token)
