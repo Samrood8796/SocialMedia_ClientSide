@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
-import { CommentIcon, HeartIcon, MenuIcon, ShareIcon, } from '../../icons/icons'
+import { CommentIcon, HeartIcon, MenuIcon, ShareIcon, WarningIcon, } from '../../icons/icons'
 import axios from '../../utils/axios'
 import { deletePost, updatePost } from '../../utils/constants'
 import EditPost from './EditPost'
@@ -10,6 +10,7 @@ import Comments from '../comment/Comments'
 import { setDeletePost } from '../../state/userReducer'
 import { likePost } from '../../state/apiCalls'
 import { format } from 'timeago.js'
+import ReportPost from './ReportPost'
 const Post = (props) => {
     const {
         postId,
@@ -25,6 +26,7 @@ const Post = (props) => {
     const [showComment, setShowComment] = useState(false)
     const [showMenu, setShowMenu] = useState(false)
     const [editPostModal, setEditPostModal] = useState(false)
+    const [reportPostModal, setReportPostModal] = useState(false)
     const user = useSelector((state) => state.user)
     const token = useSelector((state) => state.token)
     const dispatch = useDispatch()
@@ -83,11 +85,26 @@ const Post = (props) => {
                                 }
                             </div>
                         }
-
-                        {/* modal */}
+                        
                         {editPostModal &&
                             <div>
                                 <EditPost desc={desc} setShowMenu={setShowMenu} postId={postId} setEditPostModal={setEditPostModal} />
+                            </div>
+                        }
+
+                        {/* Report Post */}
+                        {user._id !== author._id &&
+                            <div className='relative'>
+                                <div className='block w-10 h-10 cursor-pointer ' onClick={() => setReportPostModal(true)}>
+                                    <WarningIcon />
+                                </div>
+                            </div>
+                        }
+
+                        {/* reportmodal */} 
+                        {reportPostModal &&
+                            <div>
+                                <ReportPost postId={postId} setReportPostModal={setReportPostModal} />
                             </div>
                         }
                     </div>
