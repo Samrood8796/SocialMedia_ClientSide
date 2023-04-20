@@ -12,7 +12,6 @@ import Notification from './Pages/Notifications/Notification'
 import VerifyEmail from './Pages/VerifyEmail/VerifyEmail'
 function App() {
   const userDetails = useSelector((state) => state.user)
-
   return (
     <div className="App">
       <BrowserRouter>
