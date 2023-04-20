@@ -39,8 +39,11 @@ const Register = () => {
             const savedUser = response.data
             console.log("savedUser");
             console.log(savedUser);
-            if(savedUser?.status === 'pending'){
-                navigate(`/verifyEmail/${savedUser.user}`)
+            // if(savedUser?.status === 'pending'){
+            //     navigate(`/verifyEmail/${savedUser.user}`)
+            // }
+            if(savedUser){
+                navigate(`/login`)
             }
             // else{
             //     navigate('/')
