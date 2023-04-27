@@ -116,7 +116,7 @@ const ProfileMainPost = () => {
                   <h1 className=' text-2xl font-semibold px-2 '>
                     {profileUser?.userName}
                   </h1>
-
+                  {userData._id !== profileId &&
                   <div className='pr-3 -mt-2'>
                     {!Following && user.followers.includes(profileId) &&
                       (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleFollow(profileId)}>Follow back</button>)}
@@ -124,7 +124,7 @@ const ProfileMainPost = () => {
                       (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleFollow(profileId)}>Follow</button>)}
                     {Following && (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleUnFollow(profileId)}>Following</button>)}
                   </div>
-
+                  }
                   <div className='flex flex-wrapjustify-self-auto w-32'>
                     <p className='text-gray-500 w-full leading-4'>{profileUser?.bio}</p>
                   </div>

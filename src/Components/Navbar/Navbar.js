@@ -15,7 +15,6 @@ const Navbar = () => {
     const users = await getAllusers(token)
     setAllusers(users)
   }
-  console.log(allUsers);
   useEffect(() => {
     allusers()
   }, [])

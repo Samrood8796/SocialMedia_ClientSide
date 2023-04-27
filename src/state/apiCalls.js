@@ -1,4 +1,4 @@
-import { addFollow, suggessions, getMyPosts, notification, profileUser, unfollow, unFriend, allUsers } from "../utils/constants";
+import { addFollow, getMyPosts, notification, profileUser, unfollow, unFriend, allUsers } from "../utils/constants";
 import { setPost, setUserData } from "./userReducer";
 import axios from "../utils/axios";
 

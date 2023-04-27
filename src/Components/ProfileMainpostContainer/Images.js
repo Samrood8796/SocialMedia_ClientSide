@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
 import Card from '../smallComponants/Card'
 const Images = ({post}) => {
-  const token = useSelector((state) => state.token)
 const [posts, setPosts] = useState([])
   useEffect(()=>{
     setPosts(post)

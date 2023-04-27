@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import FriendInfo from '../smallComponants/FriendInfo'
 import { useDispatch, useSelector } from 'react-redux'
 import { suggessions } from '../../utils/constants'

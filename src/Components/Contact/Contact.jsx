@@ -47,7 +47,7 @@ const Contact = ({ conversation, currentUser, setCurrentChat,setConversation }) 
               <li key={user._id} className="bg-white cursor-pointer flex">
                 <div className='border p-1 flex w-full hover:bg-gray-100'>
                   {user.profilePic ?
-                    <img className=' w-10 h-10 rounded-full' src={user.profilePic} /> :
+                    <img className=' w-10 h-10 rounded-full' src={user.profilePic} alt='profilepic'/> :
                     <div className='block border-zinc-400 border w-10 h-10 rounded-full'>
                       <FaUser className='w-full h-full rounded-full' />
                     </div>

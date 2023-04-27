@@ -18,7 +18,7 @@ function App() {
         <Routes>
           <Route path='/' element={userDetails && userDetails?.verified === true ? <Home /> : <Navigate to={"/login"} />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/login' element={!userDetails ? <Login />: <Navigate to={"/"}/>} />
           <Route path='/profile/:id' element={<Profile />} />
           <Route path='/othersprofile/:id' element={<OthersProfile />} />
           <Route path='/notifications' element={<Notification />} />

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ImageIcon } from '../../icons/icons'
 import { addPost } from '../../utils/constants'
 import { FaUser } from 'react-icons/fa'
-import { setPost, setPosts } from '../../state/userReducer'
+import { setPosts } from '../../state/userReducer'
 const ContentPost = () => {
   const userData = useSelector((state) => state.user)
   const posts = useSelector((state) => state.posts)
