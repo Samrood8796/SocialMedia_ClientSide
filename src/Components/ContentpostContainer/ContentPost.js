@@ -5,6 +5,8 @@ import { ImageIcon } from '../../icons/icons'
 import { addPost } from '../../utils/constants'
 import { FaUser } from 'react-icons/fa'
 import { setPosts } from '../../state/userReducer'
+import toast, { Toaster } from 'react-hot-toast';
+
 const ContentPost = () => {
   const userData = useSelector((state) => state.user)
   const posts = useSelector((state) => state.posts)
@@ -31,6 +33,10 @@ const ContentPost = () => {
         desc.current.value = ""
         setFile(null)
         dispatch(setPosts({ posts: [post, ...posts] }))
+      }else{
+        toast.error("please write something in the post",{
+          position:'top-center' 
+        })
       }
     } catch (err) {
 
@@ -65,6 +71,7 @@ const ContentPost = () => {
             <button type='submit' className='h-8 cursor-pointer text-lg text-white bg-[#02abc5] rounded w-20'>Post</button>
           </div>
         </div>
+        <Toaster/>
       </form>
     </div>
   )

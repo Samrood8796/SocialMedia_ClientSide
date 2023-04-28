@@ -93,7 +93,7 @@ const Feed = ({ isMypost,render, forceRender, Profileposts, profileId }) => {
 
             {posts?.length < 1 ? <div className='bg-white mt-2 rounded p-28 text-3xl font-semibold'>No Posts !!</div> :
 
-                posts?.slice(0, showing).map(({
+                posts?.map(({
                     _id,
                     desc,
                     author,

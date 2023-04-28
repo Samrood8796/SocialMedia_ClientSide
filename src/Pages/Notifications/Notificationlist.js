@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaUser } from 'react-icons/fa'
-import {format} from 'timeago.js'
+import { format } from 'timeago.js'
 
 const Notificationlist = ({ type, user, friend, content, post, createdAt }) => {
 
