@@ -42,6 +42,7 @@ const Chat = () => {
                 <div className=' hidden md:block w-1/4 p-2 relative '>
                     <Leftbar />
                 </div>
+                
                 <div className='w-1/4 p-4 '>
                     <Contact conversation={conversation} setConversation={setConversation} currentUser={user} setCurrentChat={setCurrentChat} />
                 </div>

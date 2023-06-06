@@ -63,7 +63,7 @@ const ProfileMainPost = () => {
   useState(() => {
     setFollowing(user.followings.includes(profileId))
   }, [])
-//profile follow
+  //profile follow
   const handleFollow = async (friendId) => {
     console.log("follow");
     try {
@@ -79,7 +79,7 @@ const ProfileMainPost = () => {
     } catch (err) {
       console.log("error occurred while handling follow");
     }
-  } 
+  }
 
   const handleUnFollow = async (friendId) => {
     console.log("unfollow");
@@ -117,13 +117,13 @@ const ProfileMainPost = () => {
                     {profileUser?.userName}
                   </h1>
                   {userData._id !== profileId &&
-                  <div className='pr-3 -mt-2'>
-                    {!Following && user.followers.includes(profileId) &&
-                      (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleFollow(profileId)}>Follow back</button>)}
-                    {!Following && !user.followers.includes(profileId) &&
-                      (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleFollow(profileId)}>Follow</button>)}
-                    {Following && (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleUnFollow(profileId)}>Following</button>)}
-                  </div>
+                    <div className='pr-3 -mt-2'>
+                      {!Following && user.followers.includes(profileId) &&
+                        (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleFollow(profileId)}>Follow back</button>)}
+                      {!Following && !user.followers.includes(profileId) &&
+                        (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleFollow(profileId)}>Follow</button>)}
+                      {Following && (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleUnFollow(profileId)}>Following</button>)}
+                    </div>
                   }
                   <div className='flex flex-wrapjustify-self-auto w-32'>
                     <p className='text-gray-500 w-full leading-4'>{profileUser?.bio}</p>
@@ -140,18 +140,23 @@ const ProfileMainPost = () => {
             </div>
             <div>
 
-              <div className=' flex gap-0 '>
-                <p onClick={() => setTab('posts')} className={tab === "posts" ? active : nonActive}>
-                  <PostIcon /> Posts
-                </p>
-                <p onClick={() => setTab('images')} className={tab === "images" ? active : nonActive}>
+              <div className=' flex'>
+                <div onClick={() => setTab('posts')} className={tab === "posts" ? active : nonActive}>
+                  <PostIcon />
+                  <p className='hidden md:block'>Posts</p>
+                </div>
+                <div onClick={() => setTab('images')} className={tab === "images" ? active : nonActive}>
                   <PhotoIcon />
-                  Photos</p>
-                <p onClick={() => setTab('followings')} className={tab === "followings" ? active : nonActive}>
-                  <UserGroupIcon />Followings </p>
-                <p onClick={() => setTab('followers')} className={tab === "followers" ? active : nonActive}>
-                  <UserGroupIcon /> Followers
-                </p>
+                  <p className='hidden md:block'>Photos</p>
+                </div>
+                <div onClick={() => setTab('followings')} className={tab === "followings" ? active : nonActive}>
+                  <UserGroupIcon />
+                  <p className='hidden md:block'>Followings</p>
+                </div>
+                <div onClick={() => setTab('followers')} className={tab === "followers" ? active : nonActive}>
+                  <UserGroupIcon />
+                <p className='hidden md:block'>Followers</p>  
+                </div>
               </div>
 
               {tab === "followings" && <Friends data={followings} type={"followings"} />}
