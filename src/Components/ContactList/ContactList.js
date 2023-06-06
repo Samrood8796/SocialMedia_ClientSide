@@ -20,8 +20,8 @@ const ContactList = ({ conversation, currentUser }) => {
     <div className="flex items-center justify-start space-x-4 p-2 my-1 bg-white shadow-md border-1 shadow-gray-200 rounded-md">
       {user?.profilePic ?
         <img className='w-10 h-10 rounded-full' src={user?.profilePic} alt='profilepic' /> :
-        <div className='border border-[#3d3f50] w-10 h-10 rounded-full'>
-          <FaUser className='w-full h-full rounded-full' /> 
+        <div className='border border-[#3d3f50]  rounded-full'>
+          <FaUser className='w-10 h-10 rounded-full' /> 
         </div>
       }
       <div className='hidden md:block'>
