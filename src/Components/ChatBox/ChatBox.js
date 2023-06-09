@@ -1,6 +1,11 @@
 import React from 'react'
-import { format } from 'timeago.js'
+
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
+TimeAgo.addDefaultLocale(en)
+
 const ChatBox = ({ message, own }) => {
+    const timeAgo = new TimeAgo('en-US')
     return (
         <>
             {/* Sent message */}
@@ -9,7 +14,7 @@ const ChatBox = ({ message, own }) => {
                     <div className={`border ${own ? 'border-blue-500 bg-blue-300' : 'bg-gray-400'} rounded-lg px-2 py-1 max-w-sm whitespace-normal break-words`}>
                         {message.text}
                     </div>
-                    <div className='text-sm  text-gray-500 mt-1'>{format(message.createdAt)}</div>
+                    <div className='text-sm  text-gray-500 mt-1'>{timeAgo.format(new Date(message.createdAt))}</div>
                 </div>
             </div>
             {/* Received message */}

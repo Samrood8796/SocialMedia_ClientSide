@@ -49,7 +49,7 @@ const Login = () => {
             }
             getUser();
         }
-    }, [user])
+    }, [user,dispatch,navigate])
 
     return (
         <div className="flex min-h-screen bg-[#02abc5] items-center justify-around py-32 px-4 sm:px-6 lg:px-8">

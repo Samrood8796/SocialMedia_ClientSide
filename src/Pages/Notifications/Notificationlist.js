@@ -1,9 +1,12 @@
 import React from 'react'
 import { FaUser } from 'react-icons/fa'
-import { format } from 'timeago.js'
+
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
+TimeAgo.addDefaultLocale(en)
 
 const Notificationlist = ({ type, user, friend, content, post, createdAt }) => {
-
+    const timeAgo = new TimeAgo('en-US')
     return (
         <div className=''>
             <div className='flex p-2 bg-gray-100 border m-1 rounded-lg'>
@@ -15,7 +18,9 @@ const Notificationlist = ({ type, user, friend, content, post, createdAt }) => {
                 }
                 <div>
                 <p>{`${friend?.userName} ${content}`}</p>
-                <p>{format(createdAt)}</p></div>
+                {/* <p>{format(createdAt)}</p> */}
+                <p>{timeAgo.format(new Date(createdAt))}</p>
+                </div>
                 {post &&
                     <img className=' mx-3 w-10 h-10' src={post?.image} alt='postimage' />
                 }

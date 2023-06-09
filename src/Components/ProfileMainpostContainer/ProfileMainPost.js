@@ -106,7 +106,6 @@ const ProfileMainPost = () => {
         <Card noPadding={false} className="bg-white mb-5">
           <div>
             <div className='h-44 bg-[#02abc5] mx-1'>
-              {/* <img className='w-full h-48' src='https://www.nationsonline.org/gallery/Greece/Acropolis-Athens.jpg' alt='' /> */}
               <div className=' w-full h-full'> </div>
             </div>
             <div className=' border-b-2 border-[#3d3f50]'>

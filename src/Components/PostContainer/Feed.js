@@ -54,12 +54,9 @@ const Feed = ({ isMypost,render, forceRender, Profileposts, profileId }) => {
     }, [])
     if (loading) return <div className='bg-white mt-2 rounded p-28 text-3xl font-semibold'>loading..............</div>
     if (!posts) return null
-
-
     if (isMypost) {
         return (
             <>
-
                 {Profileposts?.length < 1 ? <div className='bg-white mt-2 rounded p-28 text-3xl font-semibold'>No Posts !!</div> :
 
                     Profileposts?.map(({

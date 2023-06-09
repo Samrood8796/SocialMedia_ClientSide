@@ -26,7 +26,7 @@ const Chat = () => {
             }
         }
         getConversations();
-    }, [user])
+    }, [user,token])
 
     useEffect(() => {
         const getMessages = async () => {

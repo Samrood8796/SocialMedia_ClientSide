@@ -9,9 +9,14 @@ import EditPost from './EditPost'
 import Comments from '../comment/Comments'
 import { setDeletePost } from '../../state/userReducer'
 import { likePost } from '../../state/apiCalls'
-import { format } from 'timeago.js'
 import ReportPost from './ReportPost'
+
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
+TimeAgo.addDefaultLocale(en)
+
 const Post = (props) => {
+    const timeAgo = new TimeAgo('en-US')
     const {
         postId,
         desc,
@@ -69,7 +74,7 @@ const Post = (props) => {
                             }
                             <div>
                                 <p className='pl-4 font-bold'>{author?.userName}</p>
-                                <p className='pl-2 text-sm'>{format(createdAt)}</p>
+                                <p className='pl-2 text-sm'>{timeAgo.format(new Date(createdAt))}</p>
                             </div>
                         </div>
                         {user?._id === author?._id &&
