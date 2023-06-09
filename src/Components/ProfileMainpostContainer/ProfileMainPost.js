@@ -111,8 +111,8 @@ const ProfileMainPost = () => {
             <div className=' border-b-2 border-[#3d3f50]'>
               <>
                 <ProfilePic profilePic={profileUser.profilePic} profileId={profileId} />
-                <div className='ml-24 flex' >
-                  <h1 className=' text-2xl font-semibold px-2 '>
+                <div className='mx-24 flex flex-col' >
+                  <h1 className='text-2xl text-red-900 font-semibold px-2 '>
                     {profileUser?.userName}
                   </h1>
                   {userData._id !== profileId &&
@@ -124,12 +124,17 @@ const ProfileMainPost = () => {
                       {Following && (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleUnFollow(profileId)}>Following</button>)}
                     </div>
                   }
-                  <div className='flex flex-wrapjustify-self-auto w-32'>
-                    <p className='text-gray-500 w-full leading-4'>{profileUser?.bio}</p>
+
+                </div>
+                <div className='px-2'>
+                  <div className='text-gray-500 w-32 sm:w-auto box-content'>
+                    <p className='whitespace-normal text-green-500 break-words'>
+                      {user.bio}
+                    </p>
                   </div>
                 </div>
                 {userData._id === profileId &&
-                  <div className='flex justify-end mr-4 -mt-3 font-bold '>
+                  <div className='flex justify-end mr-4 mt-3 font-bold '>
                     <div onClick={() => setIsModal(true)} className='bg-[#02abc5] mb-2 text-white cursor-pointer rounded-md px-2 py-1'>
                       Edit Profile</div>
                   </div>
@@ -154,7 +159,7 @@ const ProfileMainPost = () => {
                 </div>
                 <div onClick={() => setTab('followers')} className={tab === "followers" ? active : nonActive}>
                   <UserGroupIcon />
-                <p className='hidden md:block'>Followers</p>  
+                  <p className='hidden md:block'>Followers</p>
                 </div>
               </div>
 
