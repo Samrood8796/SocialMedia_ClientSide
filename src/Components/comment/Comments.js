@@ -34,7 +34,7 @@ const Comments = ({ postId ,comments, render, forceRender}) => {
                             </div>
                         }
                         <div className='pl-4'>
-                            <input className='w-72 h-12 focus:outline-none' type="text" value={comment} onChange={(e) => setComment(e.target.value)} placeholder='comment' />
+                            <input className='w-auto h-12 focus:outline-none' type="text" value={comment} onChange={(e) => setComment(e.target.value)} placeholder='comment' />
                         </div>
                     </div>
                     {/* comment sending icon */}
