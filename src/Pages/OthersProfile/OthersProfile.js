@@ -7,8 +7,8 @@ const OthersProfile = () => {
   return (
     <>
     <Navbar />
-      <div className='bg-[#efefef] flex flex-wrap' >
-        <div className='w-full mx-44 flex flex-wap px-4'>
+      <div className='bg-[#efefef] w-full flex md:flex-wrap' >
+        <div className='w-full md:mx-44 px-4'>
           <ProfileMainPost />
         </div>
       </div>

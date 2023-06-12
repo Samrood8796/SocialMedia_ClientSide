@@ -80,7 +80,7 @@ const EditProfile = ({ setIsModal }) => {
                                     Submit
                                 </button>
                                 <button onClick={() => setIsModal(false)} type="button" className="bg-gray-400  text-white  py-2 px-4 rounded">
-                                    Close Modal
+                                    Cancel 
                                 </button>
                             </Form>
                         </Formik>

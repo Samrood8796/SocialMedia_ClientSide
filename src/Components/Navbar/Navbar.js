@@ -117,13 +117,28 @@ const Navbar = () => {
       </nav>
       {/* search bar for small scree  n */}
       <div className='relative sm:hidden flex w-full bg-[#efefef] p-2 item-center '>
-        <input className='w-full border border-black focus:outline-none py-2 px-5  text-gray rounded-l' type='text' placeholder='search....' />
-        <div className=' relative border-black bg-black cursor-pointer py-2 px-5  rounded-r-md'>
+        <input onChange={handleSearch} value={searchitem} className='w-full border border-black focus:outline-none py-2 px-5  text-gray rounded-l' type='text' placeholder='search....' />
+        <div className=' relative border-black bg-[#02abc5] cursor-pointer py-2 px-5  rounded-r-md'>
           <SearchIcon />
-          <ul className="absolute hidden z-40 top-10 w-96 right-20  bg-gray-100 rounded-md shadow-md mt-1 border border-gray-200 divide-y divide-gray-200">
-            <li className="px-3 py-2 hover:bg-gray-100 bg-white  cursor-pointer">Result 1</li>
-            <li className="px-3 py-2 hover:bg-gray-100 bg-white cursor-pointer">Result 2</li>
-            <li className="px-3 py-2 hover:bg-gray-100 bg-white cursor-pointer">Result 3</li>
+          <ul className="absolute z-40 top-10 left-[-300px] w-auto right-20  bg-gray-100 rounded-md shadow-md mt-1 border border-gray-200 divide-y divide-gray-200">
+            {filterUsers.length > 0 && searchitem !== "" ? filterUsers.map((user) => (
+              <li key={user._id} className="bg-white cursor-pointer flex">
+                <div className='border p-1 flex w-full hover:bg-gray-100'>
+                  {user.profilePic ?
+                    <img className=' w-10 h-10 rounded-full' src={user.profilePic} /> :
+                    <div className='block border-zinc-400 border w-10 h-10 rounded-full'>
+                      <FaUser className='w-full h-full rounded-full' />
+                    </div>
+                  }
+                  <Link to={`/othersprofile/${user._id}`}>
+                    <div className='px-2'>
+                      <p>{user.userName}</p>
+                      <p className='-mt-1'>{user.name}</p>
+                    </div>
+                  </Link>
+                </div>
+              </li>
+            )) : ""}
           </ul>
         </div>
       </div>
