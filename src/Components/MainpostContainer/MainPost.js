@@ -7,7 +7,7 @@ const MainPost = ({socket}) => {
   return (
     <>
       <ContentPost />
-      <div className=' py-2 '>
+      <div className='md:hidden py-2 '>
       <Rightbar/>
       </div>
       <Feed socket={socket}/>
