@@ -81,7 +81,9 @@ const Login = () => {
                             <p onClick={() => navigate('/forgottPassword')} className="w-1/2  cursor-pointer text-gray-500 hover:font-bold">Forgot your password?</p>
                         </div>
                     </div>
+                    <div className='w-full'>
                     <GoogleLogin onSuccess={responseMessage} onError={errorMessage} />
+                    </div>
                     <div>
                         <button type='submit' className="group relative flex w-full justify-center rounded-md bg-slate-800 py-2 px-3 text-sm font-semibold text-white hover:bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
