@@ -13,7 +13,7 @@ import VerifyEmail from './Pages/VerifyEmail/VerifyEmail'
 function App() {
   const userDetails = useSelector((state) => state.user)
   return (
-    <div className="App">
+    <div className="App border-box">
       <BrowserRouter>
         <Routes>
           <Route path='/' element={userDetails && userDetails?.verified === true ? <Home /> : <Navigate to={"/login"} />} />

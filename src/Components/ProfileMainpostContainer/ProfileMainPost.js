@@ -1,8 +1,8 @@
 import { addFollow, getFrieds, unfollow } from '../../utils/constants'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { PhotoIcon, PostIcon, UserGroupIcon } from '../../icons/icons'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchMypost, getProfileUser } from '../../state/apiCalls'
+import { fetchMypost, getProfileUser, handleChat } from '../../state/apiCalls'
 import React, { useEffect, useState } from 'react'
 import Feed from '../PostContainer/Feed'
 import Card from '../smallComponants/Card'
@@ -32,7 +32,7 @@ const ProfileMainPost = () => {
   const token = useSelector((state) => state.token)
   const user = useSelector((state) => state.user)
 
-
+const navigate = useNavigate()
   const getFollowers = () => {
     axios.get(`${getFrieds}/${profileId}`, {
       headers: {
@@ -65,7 +65,6 @@ const ProfileMainPost = () => {
   }, [])
   //profile follow
   const handleFollow = async (friendId) => {
-    console.log("follow");
     try {
       const response = await axios.put(addFollow, { friendId }, {
         headers: {
@@ -82,16 +81,13 @@ const ProfileMainPost = () => {
   }
 
   const handleUnFollow = async (friendId) => {
-    console.log("unfollow");
     try {
       axios.put(unfollow, { unfollowid: friendId }, {
         headers: {
           'Authorization': `Barear ${token}`
         }
       }).then((response) => {
-        console.log(response);
         const updatedUserData = response.data
-        console.log(updatedUserData);
         dispatch(setUserData({ user: updatedUserData }))
         setFollowing(false)
       })
@@ -116,15 +112,17 @@ const ProfileMainPost = () => {
                     {profileUser?.userName}
                   </h1>
                   {userData._id !== profileId &&
-                    <div className='pr-3 -mt-2'>
+                  <div className='flex'>
+                    <div className='pr-3'>
                       {!Following && user.followers.includes(profileId) &&
                         (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleFollow(profileId)}>Follow back</button>)}
                       {!Following && !user.followers.includes(profileId) &&
                         (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleFollow(profileId)}>Follow</button>)}
                       {Following && (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleUnFollow(profileId)}>Following</button>)}
                     </div>
+                    <button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={()=>{handleChat(token,userData._id,profileId,dispatch).then(()=>navigate('/chat'))}}>message</button>
+                    </div>
                   }
-
                 </div>
                 <div className='px-2'>
                   <div className='text-gray-500 w-32 sm:w-auto box-content'>

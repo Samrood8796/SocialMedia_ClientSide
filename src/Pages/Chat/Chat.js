@@ -3,16 +3,18 @@ import Navbar from '../../Components/Navbar/Navbar'
 import Contact from '../../Components/Contact/Contact'
 import ChatContainer from '../../Components/ChatContainer/ChatContainer'
 import Leftbar from '../../Components/LeftpostContainer/Leftbar'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { conversations } from '../../utils/constants'
 import axios from '../../utils/axios';
+import { setConversation } from '../../state/userReducer'
 
 const Chat = () => {
-
+    let currentChat = useSelector((state) => state.currentChat)
     const user = useSelector((state) => state.user)
     const token = useSelector((state) => state.token)
-    const [conversation, setConversation] = useState([])
-    const [currentChat, setCurrentChat] = useState(null)
+    // const [conversation, setConversation] = useState([])
+    // const [currentChat, setCurrentChat] = useState(null)
+    const dispatch = useDispatch()
     const [messages, setMessages] = useState([])
     useEffect(() => {
         const getConversations = async () => {
@@ -20,7 +22,7 @@ const Chat = () => {
                 const response = await axios.get(`${conversations}/${user._id}`, {
                     'Authorization': `barear ${token}`
                 })
-                setConversation(response.data)
+                dispatch(setConversation(response.data))
             } catch (err) {
                 console.log(err)
             }
@@ -44,7 +46,7 @@ const Chat = () => {
                 </div>
                 
                 <div className='w-1/4 p-4 '>
-                    <Contact conversation={conversation} setConversation={setConversation} currentUser={user} setCurrentChat={setCurrentChat} />
+                    <Contact  currentUser={user}  />
                 </div>
                 <div className='rounded-md w-3/4 md:w-2/4 bg-white mt-4'>
                     {currentChat ?

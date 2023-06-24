@@ -5,7 +5,9 @@ const initialState = {
     token: null,
     users: [],
     posts: [],
-    allPosts: []
+    allPosts: [],
+    conversation:[],
+    currentChat: null
 }
 
 export const userSlice = createSlice({
@@ -50,15 +52,23 @@ export const userSlice = createSlice({
             const users = action.payload.users
             state.users = users
         },
+        setCurrentChat: (state, action) => {
+            const currentChat = action.payload
+            state.currentChat = currentChat
+        },
+        setConversation: (state, action) => {
+            const conversation = action.payload
+            state.conversation = conversation
+        },
     }
 })
 
-export const {islogin,
+export const { islogin,
     setLogin, setLogout,
     setPost, setPosts,
     setFriends, setUserData,
     setAllUsers, setAllposts,
-    setDeletePost
+    setDeletePost, setCurrentChat,setConversation
 } = userSlice.actions
 
 export default userSlice.reducer;

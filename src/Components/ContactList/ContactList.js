@@ -4,12 +4,11 @@ import { useSelector } from 'react-redux';
 import { getUser } from '../../state/apiCalls';
 
 const ContactList = ({ conversation, currentUser }) => {
+  const currentChat = useSelector((state)=>state.currentChat)
   const token = useSelector((state) => state.token)
   const [user, setUser] = useState(null)
   useEffect(() => {
     const friendId = conversation.members.find((m) => m !== currentUser._id)
-    console.log("friendId");
-    console.log(friendId);
     const getUserInfo = async () => {
       const response = await getUser(token,friendId)
       setUser(response)
@@ -17,7 +16,7 @@ const ContactList = ({ conversation, currentUser }) => {
     getUserInfo()
   },[currentUser,conversation])
   return (
-    <div className="flex items-center justify-start space-x-4 p-2 my-1 bg-white shadow-md border-1 shadow-gray-200 rounded-md">
+    <div className={`flex items-center justify-start space-x-4 p-2 my-1 ${conversation?._id === currentChat?._id && 'border border-[#3d3f50]'} bg-white shadow-md border-1 shadow-gray-200 rounded-md`}>
       {user?.profilePic ?
         <img className='w-10 h-10 rounded-full' src={user?.profilePic} alt='profilepic' /> :
         <div className='border border-[#3d3f50] -mx-3 md:mx-0 w-10 h-10 rounded-full'>
