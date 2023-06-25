@@ -6,7 +6,7 @@ const initialState = {
     users: [],
     posts: [],
     allPosts: [],
-    conversation: null,
+    conversation: [],
     currentChat: null
 }
 

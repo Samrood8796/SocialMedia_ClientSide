@@ -15,7 +15,6 @@ const FriendInfo = ({ id, userName, profilePic, name }) => {
   }, [])
 
   const handleFollow = async (friendId) => {
-    console.log("follow");
     try {
       const response = await axios.put(addFollow, { friendId }, {
         headers: {
@@ -32,16 +31,13 @@ const FriendInfo = ({ id, userName, profilePic, name }) => {
   }
 
   const handleUnFollow = async (friendId) => {
-    console.log("unfollow");
     try {
       axios.put(unfollow, { unfollowid: friendId }, {
         headers: {
           'Authorization': `Barear ${token}`
         }
       }).then((response) => {
-        console.log(response);
         const updatedUserData = response.data
-        console.log(updatedUserData);
         dispatch(setUserData({ user: updatedUserData }))
         setFollowing(false)
       })

@@ -29,7 +29,6 @@ const Login = () => {
         })
     }
     const responseMessage = (response) => {
-        console.log(response);
         setUser(response.credential)
     };
     const errorMessage = (error) => {
@@ -43,7 +42,6 @@ const Login = () => {
                         "Authorization": `barear ${user}`
                     }
                 })
-                console.log(response);
                 dispatch(setLogin(response.data))
                 navigate('/')
             }

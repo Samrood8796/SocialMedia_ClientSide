@@ -14,7 +14,6 @@ const ReportPost = ({ setReportPostModal,postId}) => {
   
     const handleReportPost =async (e) => {
       e.preventDefault()
-      console.log("dddddddd");
       const formData = new FormData()
       formData.append("content", content)
      axios.post(`${reportPost}/${postId}`, formData, {
@@ -23,7 +22,6 @@ const ReportPost = ({ setReportPostModal,postId}) => {
           'Content-Type': 'application/json'
         }
       }).then((response)=>{
-          console.log(response.data);
           toast.success(response.data, {
               position: "top-center",
           });

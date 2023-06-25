@@ -11,7 +11,6 @@ const Notification = () => {
     useEffect(() => {
         const fetchNotification = async () => {
             const response = await getNotifications(token)
-            console.log(response);
             setNotification(response)
         }
 

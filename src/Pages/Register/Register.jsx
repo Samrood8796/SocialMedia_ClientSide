@@ -34,11 +34,8 @@ const Register = () => {
         }
     })
     let handleSignUp = (user) => {
-        console.log(user);
         axios.post(signupPost, user).then((response) => {
             const savedUser = response.data
-            console.log("savedUser");
-            console.log(savedUser);
             if(savedUser?.status === 'pending'){
                 navigate(`/verifyEmail/${savedUser.user}`)
             }

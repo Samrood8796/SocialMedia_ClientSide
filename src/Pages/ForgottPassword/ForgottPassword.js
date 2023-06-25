@@ -9,19 +9,12 @@ const ForgottPassword = () => {
     const handleEmail = (e) =>{
         e.preventDefault()
         if(email){
-            console.log("ddderwrqweqw");
             axios.post(forgotPassword,{email:email}).then((response)=>{
                 toast.success(response.data.msg)
                 navigate('/success')
             }).catch((err)=>{
                 toast.error(err.response.data.msg)
             })
-            // .then((response)=>{
-            //     navigate(/resetPassword/)
-            // }).catch((err)=>{
-            //     console.log("errorrrrr");
-            //     console.log(err);
-            // })
         }
     }
     return (

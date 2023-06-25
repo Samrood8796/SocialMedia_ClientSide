@@ -32,7 +32,6 @@ const ProfileMainPost = () => {
   const token = useSelector((state) => state.token)
   const user = useSelector((state) => state.user)
   const conversation = useSelector((state) => state.conversation)
-console.log(token,"user",userData._id,"otheruser",profileId)
 const navigate = useNavigate()
   const getFollowers = () => {
     axios.get(`${getFrieds}/${profileId}`, {

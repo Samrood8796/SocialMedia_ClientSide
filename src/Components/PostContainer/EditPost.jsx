@@ -26,9 +26,6 @@ const EditPost = ({ setEditPostModal,postId ,setShowMenu,desc}) => {
       }
     })
     const updatedPost = response.data;
-    console.log("updatedPost==============>>>");
-    console.log(updatedPost);
-    console.log("updatedPost==============>>>");
       dispatch(setPost({posts:updatedPost}))
       setEditPostModal(false)
       setShowMenu(false)

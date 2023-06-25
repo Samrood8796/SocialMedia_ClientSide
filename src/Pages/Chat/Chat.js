@@ -22,14 +22,11 @@ const Chat = () => {
                 const response = await axios.get(`${conversations}/${user._id}`, {
                     'Authorization': `barear ${token}`
                 })
-                console.log("response");
-                console.log(response);
                 dispatch(setConversation(response.data))
             } catch (err) {
                 console.log(err)
             }
         }
-        console.log("response.data======");
         getConversations();
     }, [user,token])
 

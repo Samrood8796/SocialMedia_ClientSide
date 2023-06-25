@@ -10,12 +10,10 @@ const VerifyEmail = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const userId = useParams()
-    console.log(userId);
 
     const [otp, setOtp] = useState(null)
     const handleOtp = (e) => {
         e.preventDefault();
-        console.log('ddd');
         if (otp != null) {
             axios.post(verifyEmail, { userId: userId.id, otp: otp }).then((Response) => {
                 dispatch(setLogin(Response.data))

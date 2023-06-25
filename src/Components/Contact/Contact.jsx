@@ -34,7 +34,6 @@ const Contact = ({ currentUser }) => {
       let res = [...conversation,response.chat]
       dispatch(setConversation(res))
       dispatch(setCurrentChat(response.chat))
-      console.log(res);
     } 
     else {
       dispatch(setCurrentChat(response.chat))
