@@ -19,7 +19,6 @@ const Navbar = () => {
     allusers()
   }, [])
   const handleSearch = (e) => {
-    console.log(e.target.value)
     setSearchItem(e.target.value)
   }
   const dispatch = useDispatch()

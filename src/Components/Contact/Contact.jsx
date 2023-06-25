@@ -4,8 +4,8 @@ import ContactList from '../ContactList/ContactList';
 import { addChat, getAllusers } from '../../state/apiCalls';
 import { FaUser } from 'react-icons/fa';
 import { setConversation, setCurrentChat } from '../../state/userReducer';
-const Contact = ({  currentUser }) => {
-  const conversation = useSelector((state)=>state.conversation)
+const Contact = ({ currentUser }) => {
+  const conversation = useSelector((state) => state.conversation)
   const userData = useSelector((state) => state.user)
   const token = useSelector((state) => state.token)
   const dispatch = useDispatch()
@@ -30,14 +30,18 @@ const Contact = ({  currentUser }) => {
   }, [searchitem])
   const handleChat = async (friendId) => {
     const response = await addChat(token, userData._id, friendId)
-    dispatch(setCurrentChat(response.chat))
     if (!response.chatExist) {
-      dispatch(setConversation(response))
-      dispatch(setCurrentChat(response))
+      let res = [...conversation,response.chat]
+      dispatch(setConversation(res))
+      dispatch(setCurrentChat(response.chat))
+      console.log(res);
+    } 
+    else {
+      dispatch(setCurrentChat(response.chat))
     }
     setSearchItem("")
   }
-  return (  
+  return (
     <div className="flex flex-col bg-white rounded-lg shadow-md p-4">
       <div className="relative mb-4">
         <input onChange={handleSearch} value={searchitem}
@@ -65,7 +69,7 @@ const Contact = ({  currentUser }) => {
         </ul>
       </div>
       <div className='max-h-[20rem] overflow-y-scroll hide-scrollbar'>
-        {conversation.map((item, index) => (
+        {conversation.length >=1 && conversation.map((item, index) => (
           <div onClick={() => { dispatch(setCurrentChat(item)) }} key={index}>
             <ContactList conversation={item} currentUser={currentUser} />
           </div>

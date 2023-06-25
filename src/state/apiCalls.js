@@ -98,7 +98,6 @@ export const getProfileUser = async (token, profileId) => {
                 Authorization: `Bearer ${token}`
             }
         })
-        console.log(user.data);
         return user.data;
     } catch (err) {
 
@@ -122,20 +121,23 @@ export const getUser = async (token, friendId) => {
 }
 
 export const addChat = async (token, firstId, secondId) => {
-    
-    const response = await axios.post(`/api/chats`,{firstId,secondId}, {
+
+    const response = await axios.post(`/api/chats`, { firstId, secondId }, {
         headers: {
             "Authorization": `Barear ${token}`
         }
     })
     return response.data
 }
-export const handleChat = async (token, userId, friendId,dispatch) => {
+export const handleChat = async (token, userId, friendId, conversation, dispatch) => {
     const response = await addChat(token, userId, friendId)
-    dispatch(setCurrentChat(response.chat))
     if (!response.chatExist) {
-      dispatch(setConversation(response))
-      dispatch(setCurrentChat(response))
+        let res = [...conversation, response.chat]
+        dispatch(setConversation(res))
+        dispatch(setCurrentChat(response.chat))
+    }
+    else {
+        dispatch(setCurrentChat(response.chat))
     }
     return;
-  }
+}

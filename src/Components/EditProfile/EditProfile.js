@@ -8,8 +8,6 @@ import { editProfile } from '../../utils/constants'
 const EditProfile = ({ setIsModal }) => {
     const user = useSelector((state) => state.user)
     const token = useSelector((state) =>state.token)
-    console.log("first user");
-    console.log(user);
     const dispatch = useDispatch()
     const initialValues = {
         userName: user.userName,
@@ -37,8 +35,6 @@ const EditProfile = ({ setIsModal }) => {
             dispatch(setUserData({user:response.data.user}))
             setIsSubmitting(false)
             setIsModal(false)
-            console.log("user");
-            console.log(user);
         }).catch((err)=>{
             setIsSubmitting(false)
             setIsModal(false)

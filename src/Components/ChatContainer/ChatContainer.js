@@ -69,7 +69,7 @@ const ChatContainer = ({ messages, currentChat, setMessages }) => {
     }
   }
   return (
-    <div className='flex flex-col justify-between' style={{"--navbar-height": "100px", height: "calc(100vh - var(--navbar-height))"}}>
+    <div className='flex flex-col justify-between' >
       {/* Chat header */}
       <div className=' p-2'>
         <div className='flex bg-[#02abc5] rounded-md p-2 items-center'>
@@ -94,15 +94,15 @@ const ChatContainer = ({ messages, currentChat, setMessages }) => {
         ))}
       </div>
       {/* Chat input */}
-      <div className='rounded-md mr-5 ml-2 mb-3 box-content  bg-[#02abc5] p-2'>
+      <div className='rounded-md mr-5 ml-2 mb-3 box-content bg-[#02abc5] p-2'>
         <form>
           <div className='flex items-center box-border '>
             <div className='border bg-white w-10 h-10 rounded-full'>
               <FaUser className='w-full h-full rounded-full' />
             </div>
-            <input onChange={(e) => setNewMessage(e.target.value)} value={newMessage} className='flex-1 ml-2 h-10 rounded-2xl px-4 focus:outline-none ' type="text" placeholder='Send a message........' />
+            <input onChange={(e) => setNewMessage(e.target.value)} value={newMessage} className='flex-1 ml-2  w-full h-10 rounded-2xl px-4 focus:outline-none ' type="text" placeholder='Send a message........' />
             <div className='ml-2'>
-              <button onClick={handleSubmit} className='bg-white rounded-full px-4 py-2 focus:outline-none'>
+              <button onClick={handleSubmit} className='bg-white rounded-full px-3 py-2 focus:outline-none'>
                 <SubmitIcon />
               </button>
             </div>

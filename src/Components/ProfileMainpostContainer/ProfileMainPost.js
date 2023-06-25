@@ -31,7 +31,8 @@ const ProfileMainPost = () => {
   const [render, forceRender] = useState(false)
   const token = useSelector((state) => state.token)
   const user = useSelector((state) => state.user)
-
+  const conversation = useSelector((state) => state.conversation)
+console.log(token,"user",userData._id,"otheruser",profileId)
 const navigate = useNavigate()
   const getFollowers = () => {
     axios.get(`${getFrieds}/${profileId}`, {
@@ -120,7 +121,7 @@ const navigate = useNavigate()
                         (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleFollow(profileId)}>Follow</button>)}
                       {Following && (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleUnFollow(profileId)}>Following</button>)}
                     </div>
-                    <button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={()=>{handleChat(token,userData._id,profileId,dispatch).then(()=>navigate('/chat'))}}>message</button>
+                    <button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={()=>{handleChat(token,userData._id,profileId,conversation,dispatch).then(()=>navigate('/chat'))}}>message</button>
                     </div>
                   }
                 </div>
