@@ -43,7 +43,7 @@ const Navbar = () => {
   }, [searchitem])
   return (
     <>
-      <nav className='sticky top-0 z-20 w-full bg-[#02abc5] flex  justify-between h-16 items-center py-3 px-5 shadow-md'>
+      <nav className='sticky box-border top-0 z-20 w-full bg-[#02abc5] flex  justify-between h-[64px] items-center px-5 shadow-md'>
         <div className='flex item-center space-x-5'>
           <i className='fa-solid fa-bars'></i>
           <h1 className='text-3xl text-white italic from-neutral-700'>Social</h1>
@@ -56,7 +56,7 @@ const Navbar = () => {
                 <div className='border p-1 flex w-full hover:bg-gray-100'>
                   {user.profilePic ?
                     <img className=' w-10 h-10 rounded-full' src={user.profilePic} /> :
-                    <div className='block border-zinc-400 border w-10 h-10 rounded-full'>
+                    <div className='block border-zinc-400 border w-10 h-10 rounded-full'> 
                       <FaUser className='w-full h-full rounded-full' />
                     </div>
                   }

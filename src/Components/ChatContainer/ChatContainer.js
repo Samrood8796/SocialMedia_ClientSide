@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 import ChatBox from '../ChatBox/ChatBox';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from '../../utils/axios';
 import io from 'socket.io-client';
 import { getUser } from '../../state/apiCalls';
 import { SubmitIcon } from '../../icons/icons';
+import { BiArrowBack } from 'react-icons/bi';
+import { setChat } from '../../state/userReducer';
 
 const socket = io.connect("wss://zwatch.tk")
 const ChatContainer = ({ messages, currentChat, setMessages }) => {
@@ -14,6 +16,9 @@ const ChatContainer = ({ messages, currentChat, setMessages }) => {
   const [newMessage, setNewMessage] = useState("")
   const [friend, setFriend] = useState()
   const [arrivalMessage, setArrivalMessage] = useState(null)
+  const dispatch = useDispatch()
+  const height = `calc(100%-110px)`
+  console.log(height);
   const scrollRef = useRef()
   useEffect(() => {
     socket?.emit("addUser", user._id)
@@ -69,24 +74,23 @@ const ChatContainer = ({ messages, currentChat, setMessages }) => {
     }
   }
   return (
-    <div className='flex flex-col justify-between' >
+    <div className=' flex flex-col justify-between' >
       {/* Chat header */}
-      <div className=' p-2'>
-        <div className='flex bg-[#02abc5] rounded-md p-2 items-center'>
+        <div className='flex h-[55px] mx-1 bg-[#02abc5] rounded-md items-center'>
+        <button className='md:hidden mr-1 text-white  text-2xl' onClick={()=>{dispatch(setChat({showMessage:"hidden",showContact:"block"}))}} ><BiArrowBack/></button>
           {friend?.profilePic ?
-            <img className='w-10 h-10 rounded-full' src={friend?.profilePic} alt='profilepic' /> :
-            <div className='border border-[#3d3f50] w-10 h-10 rounded-full'>
+            <img className='md:mx-1 w-10 h-10 rounded-full' src={friend?.profilePic} alt='profilepic' /> :
+            <div className='border md:mx-2  border-[#3d3f50] w-10 h-10 rounded-full'>
               <FaUser className='w-full h-full rounded-full' />
             </div>
           }
           <div className='pl-2'>
             <h3 className='text-white font-medium'>{friend?.name}</h3>
-            <div className='text-sm font-medium'>online...</div>
+            <div className='text-sm font-medium'>Business chat...</div>
           </div>
         </div>
-      </div>
       {/* Chat messages */}
-      <div className='h-96  overflow-y-scroll hide-scrollbar px-2 py-1'>
+      <div className='custom-height overflow-y-scroll hide-scrollbar px-2 py-1'>
         {messages.map((m, index) => (
           <div ref={scrollRef} key={index} >
             <ChatBox message={m} own={m.senderId === user._id} />
@@ -94,20 +98,18 @@ const ChatContainer = ({ messages, currentChat, setMessages }) => {
         ))}
       </div>
       {/* Chat input */}
-      <div className='rounded-md mx-2 mb-3 box-content bg-[#02abc5] p-2'>
-        <form>
-          <div className='flex items-center box-border '>
-            <div className='border bg-white w-10 h-10 rounded-full'>
+      <div className='rounded-md h-[55px] w-full flex items-center bg-[#02abc5]'>
+          <div className='flex items-center box-border w-full '>
+            {/* <div className='border bg-white w-10 h-10 rounded-full'>
               <FaUser className='w-full h-full rounded-full' />
-            </div>
+            </div> */}
             <input onChange={(e) => setNewMessage(e.target.value)} value={newMessage} className='flex-1 ml-2  w-full h-10 rounded-2xl px-4 focus:outline-none ' type="text" placeholder='Send a message........' />
-            <div className='ml-2'>
+            <div className='mx-2'>
               <button onClick={handleSubmit} className='bg-white rounded-full px-3 py-2 focus:outline-none'>
                 <SubmitIcon />
               </button>
             </div>
           </div>
-        </form>
       </div>
     </div>
   );
