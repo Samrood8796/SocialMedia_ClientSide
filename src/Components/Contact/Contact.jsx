@@ -4,7 +4,7 @@ import ContactList from '../ContactList/ContactList';
 import { addChat, getAllusers } from '../../state/apiCalls';
 import { FaUser } from 'react-icons/fa';
 import { setConversation, setCurrentChat } from '../../state/userReducer';
-const Contact = ({ currentUser }) => {
+const Contact = ({ currentUser,setShowMessage,setShowContact }) => {
   const conversation = useSelector((state) => state.conversation)
   const userData = useSelector((state) => state.user)
   const token = useSelector((state) => state.token)
@@ -38,6 +38,8 @@ const Contact = ({ currentUser }) => {
     else {
       dispatch(setCurrentChat(response.chat))
     }
+    setShowContact("hidden")
+    setShowMessage("block")
     setSearchItem("")
   }
   return (
@@ -69,7 +71,7 @@ const Contact = ({ currentUser }) => {
       </div>
       <div className='max-h-[20rem] overflow-y-scroll hide-scrollbar'>
         {conversation.length >=1 && conversation.map((item, index) => (
-          <div onClick={() => { dispatch(setCurrentChat(item)) }} key={index}>
+          <div onClick={() => { dispatch(setCurrentChat(item));setShowMessage("block");setShowContact("hidden") }} key={index}>
             <ContactList conversation={item} currentUser={currentUser} />
           </div>
         ))}

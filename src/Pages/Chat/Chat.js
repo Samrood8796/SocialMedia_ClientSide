@@ -7,13 +7,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { conversations } from '../../utils/constants'
 import axios from '../../utils/axios';
 import { setConversation } from '../../state/userReducer'
-
+import {BiArrowBack} from 'react-icons/bi'
 const Chat = () => {
     let currentChat = useSelector((state) => state.currentChat)
     const user = useSelector((state) => state.user)
     const token = useSelector((state) => state.token)
     // const [conversation, setConversation] = useState([])
     // const [currentChat, setCurrentChat] = useState(null)
+    const [showContact,setShowContact] = useState("block")
+    const [showMessage,setShowMessage] = useState("hidden")
     const dispatch = useDispatch()
     const [messages, setMessages] = useState([])
     useEffect(() => {
@@ -45,10 +47,11 @@ const Chat = () => {
                     <Leftbar />
                 </div>
                 
-                <div className='w-1/4 p-4 '>
-                    <Contact  currentUser={user}  />
+                <div className={`w-full md:w-1/4 p-4 ${showContact} md:block`}>
+                    <Contact  currentUser={user} setShowContact={setShowContact} setShowMessage={setShowMessage} />
                 </div>
-                <div className='rounded-md w-3/4 md:w-2/4 bg-white mt-4'>
+                <div className={`rounded-md ${showMessage} md:block w-full md:w-2/4 bg-white mt-4`}>
+                    <button onClick={()=>{setShowMessage("hidden"); setShowContact("block")}} className='p-2 md:hidden'><BiArrowBack/></button>
                     {currentChat ?
                         <ChatContainer messages={messages} setMessages={setMessages} currentChat={currentChat} /> :
                         <div className='bg-white m-5'><div className=' p-24 text-2xl italic'>open a chat to start a conversation</div></div>

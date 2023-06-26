@@ -81,12 +81,12 @@ const ChatContainer = ({ messages, currentChat, setMessages }) => {
           }
           <div className='pl-2'>
             <h3 className='text-white font-medium'>{friend?.name}</h3>
-            <div className='text-sm font-medium'>online</div>
+            <div className='text-sm font-medium'>online...</div>
           </div>
         </div>
       </div>
       {/* Chat messages */}
-      <div className='h-60 md:h-[356px] overflow-y-scroll px-2 py-1'>
+      <div className='h-96  overflow-y-scroll hide-scrollbar px-2 py-1'>
         {messages.map((m, index) => (
           <div ref={scrollRef} key={index} >
             <ChatBox message={m} own={m.senderId === user._id} />
@@ -94,7 +94,7 @@ const ChatContainer = ({ messages, currentChat, setMessages }) => {
         ))}
       </div>
       {/* Chat input */}
-      <div className='rounded-md mr-5 ml-2 mb-3 box-content bg-[#02abc5] p-2'>
+      <div className='rounded-md mx-2 mb-3 box-content bg-[#02abc5] p-2'>
         <form>
           <div className='flex items-center box-border '>
             <div className='border bg-white w-10 h-10 rounded-full'>

@@ -52,7 +52,7 @@ const Feed = ({ isMypost,render, forceRender, Profileposts, profileId }) => {
     useEffect(() => {
         fetchPosts()
     }, [])
-    if (loading) return <div className='bg-white mt-2 rounded p-28 text-3xl font-semibold'>loading..............</div>
+    if (loading) return <div className='bg-white mt-2 h-full w-full box-border rounded p-28 text-3xl font-semibold'>loading..............</div>
     if (!posts) return null
     if (isMypost) {
         return (
