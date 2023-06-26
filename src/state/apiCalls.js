@@ -1,5 +1,5 @@
 import { addFollow, getMyPosts, notification, profileUser, unfollow, unFriend, allUsers } from "../utils/constants";
-import { setConversation, setCurrentChat, setPost, setUserData } from "./userReducer";
+import { setChat, setConversation, setCurrentChat, setPost, setUserData } from "./userReducer";
 import axios from "../utils/axios";
 import { Navigate, useNavigate } from "react-router-dom";
 
@@ -129,7 +129,7 @@ export const addChat = async (token, firstId, secondId) => {
     })
     return response.data
 }
-export const handleChat = async (token, userId, friendId, conversation, dispatch) => {
+export const handleChat = async (token, userId, friendId, conversation,chat, dispatch) => {
     const response = await addChat(token, userId, friendId)
     if (!response.chatExist) {
         let res = [...conversation, response.chat]
@@ -139,5 +139,6 @@ export const handleChat = async (token, userId, friendId, conversation, dispatch
     else {
         dispatch(setCurrentChat(response.chat))
     }
+    dispatch(setChat({showContact:"hidden",showMessage:"block"}))
     return;
 }

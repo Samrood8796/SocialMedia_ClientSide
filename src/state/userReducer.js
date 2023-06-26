@@ -7,7 +7,8 @@ const initialState = {
     posts: [],
     allPosts: [],
     conversation: [],
-    currentChat: null
+    currentChat: null,
+    chat:{showContact:"block", showMessage:"hidden"}
 }
 
 export const userSlice = createSlice({
@@ -29,6 +30,7 @@ export const userSlice = createSlice({
             state.posts=[]
             state.conversation = []
             state.currentChat = null
+            state.chat = {showContact:"block", showMessage:"hidden"}
         },
         setFriends: (state, action) => {
             if (state.user) {
@@ -65,6 +67,10 @@ export const userSlice = createSlice({
             const conversation = action.payload
             state.conversation = conversation
         },
+        setChat: (state, action) => {
+            state.chat.showContact = action.payload.showContact
+            state.chat.showMessage = action.payload.showMessage
+        },
     }
 })
 
@@ -73,7 +79,7 @@ export const { islogin,
     setPost, setPosts,
     setFriends, setUserData,
     setAllUsers, setAllposts,
-    setDeletePost, setCurrentChat, setConversation
+    setDeletePost, setCurrentChat, setConversation,setChat
 } = userSlice.actions
 
 export default userSlice.reducer;

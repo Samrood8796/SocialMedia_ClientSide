@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import ContactList from '../ContactList/ContactList';
 import { addChat, getAllusers } from '../../state/apiCalls';
 import { FaUser } from 'react-icons/fa';
-import { setConversation, setCurrentChat } from '../../state/userReducer';
-const Contact = ({ currentUser,setShowMessage,setShowContact }) => {
+import { setChat, setConversation, setCurrentChat } from '../../state/userReducer';
+const Contact = ({ currentUser }) => {
   const conversation = useSelector((state) => state.conversation)
   const userData = useSelector((state) => state.user)
   const token = useSelector((state) => state.token)
@@ -31,15 +31,14 @@ const Contact = ({ currentUser,setShowMessage,setShowContact }) => {
   const handleChat = async (friendId) => {
     const response = await addChat(token, userData._id, friendId)
     if (!response.chatExist) {
-      let res = [...conversation,response.chat]
+      let res = [...conversation, response.chat]
       dispatch(setConversation(res))
       dispatch(setCurrentChat(response.chat))
-    } 
+    }
     else {
       dispatch(setCurrentChat(response.chat))
     }
-    setShowContact("hidden")
-    setShowMessage("block")
+    dispatch(setChat({ showContact: "hidden", showMessage: "block" }))
     setSearchItem("")
   }
   return (
@@ -70,13 +69,13 @@ const Contact = ({ currentUser,setShowMessage,setShowContact }) => {
         </ul>
       </div>
       <div className='max-h-[20rem] overflow-y-scroll hide-scrollbar'>
-        {conversation.length >=1 && conversation.map((item, index) => (
-          <div onClick={() => { dispatch(setCurrentChat(item));setShowMessage("block");setShowContact("hidden") }} key={index}>
-            <ContactList conversation={item} currentUser={currentUser} />
+        {conversation.length >= 1 && conversation.map((item, index) => (
+          <div onClick={() => { dispatch(setCurrentChat(item)); dispatch(setChat({ showMessage: "block", showContact: "hidden" }))}} key={index}>
+            <ContactList conversation={item} currentUser={currentUser} /> 
           </div>
         ))}
       </div>
-    </div>
+    </div >
   );
 };
 

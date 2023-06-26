@@ -17,6 +17,7 @@ const ProfileMainPost = () => {
   const params = useParams()
   const profileId = params.id
   const userData = useSelector((state) => state.user)
+  const chat = useSelector((state) => state.chat)
   //editprofile modal
   const [isModal, setIsModal] = useState(false)
   const [tab, setTab] = useState('posts')
@@ -120,7 +121,7 @@ const navigate = useNavigate()
                         (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleFollow(profileId)}>Follow</button>)}
                       {Following && (<button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={() => handleUnFollow(profileId)}>Following</button>)}
                     </div>
-                    <button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={()=>{handleChat(token,userData._id,profileId,conversation,dispatch).then(()=>navigate('/chat'))}}>message</button>
+                    <button className='rounded-md bg-[#02abc5] my-2 px-3 py-1 text-white' onClick={()=>{handleChat(token,userData._id,profileId,conversation,chat,dispatch).then(()=>navigate('/chat'))}}>message</button>
                     </div>
                   }
                 </div>
