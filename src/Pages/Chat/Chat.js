@@ -49,7 +49,7 @@ const Chat = () => {
                 <div className={`h-full w-full md:w-1/4 p-4 ${chat.showContact} md:block`}>
                     <Contact  currentUser={user}  />
                 </div>
-                <div className={`rounded-md ${chat.showMessage}  md:block w-full md:w-2/4 bg-white mt-[16px]`}>
+                <div className={`rounded-md ${chat.showMessage}  md:block w-full md:w-2/4 md:bg-white mt-[16px]`}>
                     {currentChat ?
                         <ChatContainer messages={messages} setMessages={setMessages} currentChat={currentChat} /> :
                         <div className='bg-white m-5'><div className=' p-24 text-2xl italic'>open a chat to start a conversation</div></div>

@@ -96,7 +96,7 @@ const ChatContainer = ({ messages, currentChat, setMessages }) => {
         ))}
       </div>
       {/* Chat input */}
-      <div className='rounded-md h-[55px] w-full flex items-center bg-[#02abc5]'>
+      <div className='md:rounded-md h-[55px] w-full flex items-center  md:static absolute bottom-0 bg-[#02abc5]'>
           <div className='flex items-center box-border w-full '>
             {/* <div className='border bg-white w-10 h-10 rounded-full'>
               <FaUser className='w-full h-full rounded-full' />
