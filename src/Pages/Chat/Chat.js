@@ -46,7 +46,7 @@ const Chat = () => {
                     <Leftbar />
                 </div>
                 
-                <div className={`w-full md:w-1/4 p-4 ${chat.showContact} md:block`}>
+                <div className={`h-full w-full md:w-1/4 p-4 ${chat.showContact} md:block`}>
                     <Contact  currentUser={user}  />
                 </div>
                 <div className={`rounded-md ${chat.showMessage}  md:block w-full md:w-2/4 bg-white mt-[16px]`}>
