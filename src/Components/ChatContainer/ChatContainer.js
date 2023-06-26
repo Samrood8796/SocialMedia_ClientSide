@@ -17,8 +17,6 @@ const ChatContainer = ({ messages, currentChat, setMessages }) => {
   const [friend, setFriend] = useState()
   const [arrivalMessage, setArrivalMessage] = useState(null)
   const dispatch = useDispatch()
-  const height = `calc(100%-110px)`
-  console.log(height);
   const scrollRef = useRef()
   useEffect(() => {
     socket?.emit("addUser", user._id)
