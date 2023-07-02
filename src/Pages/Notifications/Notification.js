@@ -22,7 +22,7 @@ const Notification = () => {
     return (
         <>
             <Navbar />
-            <div className='bg-[#efefef] flex  pt-8 ' >
+            <div className='bg-[#efefef] flex  pt-8 h-screen' >
                 <div className=' hidden md:block w-1/4 p-2 relative '>
                     <Leftbar />
                 </div>
