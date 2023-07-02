@@ -16,10 +16,13 @@ const Notification = () => {
 
         fetchNotification()
     },[token])
+    const containerStyle = {
+        height: `calc(100vh - 200px)`,
+      };
     return (
         <>
             <Navbar />
-            <div className='bg-[#efefef] flex flex-wrap pt-8' >
+            <div className='bg-[#efefef] flex  pt-8 ' >
                 <div className=' hidden md:block w-1/4 p-2 relative '>
                     <Leftbar />
                 </div>
@@ -28,7 +31,7 @@ const Notification = () => {
                         <div className="pt-4 pl-4">
                             <p>Notifications</p>
                         </div>
-                        <div className='p-4 h-screen overflow-scroll overflow scrollbar-hide'> 
+                        <div style={containerStyle} className='p-4 overflow-y-scroll overflow scrollbar-hide'> 
 
                         {notification.length !== 0 ? notification.map(({type, user, friend, content, postId,createdAt},index)=>(
                             <React.Fragment  key={index}>

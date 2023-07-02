@@ -40,8 +40,8 @@ const Comments = ({ postId ,comments, render, forceRender}) => {
                     {/* comment sending icon */}
                     <div className='p-2' onClick={HandleComment}>
                         <SubmitIcon />
-                    </div>
-                </div>
+                    </div> 
+                </div> 
                 {comments && comments.map((item) => (
                     <div className='flex p-2 gap-2 border-y border-zinc-100' key={item._id}>
                         {item?.author?.profilePic ?
